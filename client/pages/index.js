@@ -18,24 +18,24 @@ export default function Home() {
   }
 
   // Just gets all the tasks from the contract
-  const getAllTasks = async () => {
+  const getAllNotes = async () => {
 
   }
 
   // Add tasks from front-end onto the blockchain
-  const addTask = async e => {
+  const addNote = async e => {
 
   }
 
   // Remove tasks from front-end by filtering it out on our "back-end" / blockchain smart contract
-  const deleteTask = key => async () => {
+  const deleteNote = key => async () => {
 
   }
 
   return (
     <div className='bg-[#062F4F] h-screen w-screen flex justify-center py-6'>
       {!'is user not logged in?' ? <ConnectWalletButton /> :
-        'is this the correct network?' ? <NoteList /> : <WrongNetworkMessage />}
+        !'is this the correct network?' ? <NoteList /> : <WrongNetworkMessage />}
     </div>
   )
 }
