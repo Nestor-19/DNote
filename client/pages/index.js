@@ -1,6 +1,6 @@
 import WrongNetworkMessage from '../components/WrongNetworkMessage'
 import ConnectWalletButton from '../components/ConnectWalletButton'
-import TodoList from '../components/TodoList'
+import NoteList from '../components/NoteList'
 
 /* 
 const tasks = [
@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <div className='bg-[#062F4F] h-screen w-screen flex justify-center py-6'>
       {!'is user not logged in?' ? <ConnectWalletButton /> :
-        'is this the correct network?' ? <TodoList /> : <WrongNetworkMessage />}
+        'is this the correct network?' ? <NoteList /> : <WrongNetworkMessage />}
     </div>
   )
 }
