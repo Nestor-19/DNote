@@ -22,4 +22,23 @@ contract NoteContract {
     noteToOwner[noteId] = msg.sender;
     emit AddNote(msg.sender, noteId);
   }
+
+  function getMyNotes() external view returns (Note[] memory) {
+    Note[] memory temp  = new Note[](notes.length);
+    uint count = 0;
+    
+    for (uint i=0; i<notes.length; i++){
+      if(noteToOwner[i] == msg.sender && notes[i].isDeleted == false){
+        temp[count] = notes[i];
+        count ++;
+      }
+    }
+    Note[] memory res = new Note[](count);
+    
+    for (uint i=0; i<count; i++){
+      res[i] = temp[i];
+    }
+
+    return res;
+  }
 }
