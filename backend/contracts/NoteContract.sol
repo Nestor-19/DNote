@@ -41,4 +41,11 @@ contract NoteContract {
 
     return res;
   }
+
+  function deleteNote(uint noteId, bool isDeleted) external{
+    if(noteToOwner[noteId] == msg.sender){
+      notes[noteId].isDeleted = isDeleted;
+      emit DeleteNote(noteId, isDeleted);
+    }
+  }
 }
