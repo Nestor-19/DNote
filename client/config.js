@@ -1,0 +1,1 @@
+export const NoteContractAddress = '0xe836fF57CC891f06D30aacD0a2FbDeC53C835da9';
