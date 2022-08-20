@@ -3,6 +3,8 @@ import ConnectWalletButton from '../components/ConnectWalletButton'
 import NoteList from '../components/NoteList'
 import NoteAbi from '../../backend/build/contracts/NoteContract.json'
 import { NoteContractAddress } from '../config'
+import { ethers } from 'ethers'
+
 
 /* 
 const tasks = [
