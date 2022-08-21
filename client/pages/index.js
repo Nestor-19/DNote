@@ -11,6 +11,8 @@ export default function Home() {
   const [rightNetwork, setRightNetwork] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currAccount, setCurrAccount] = useState('');
+  const [userInput, setUserInput] = useState('');
+  const [notes, setNotes] = useState([]);
 
   // Triggers Metamask popup for user to connect their wallet
   const connectWallet = async () => {
@@ -52,13 +54,45 @@ export default function Home() {
     }
   }
 
-  // Just gets all the tasks from the contract
-  const getAllNotes = async () => {
 
+   // Adds tasks from front-end onto the blockchain
+   const addNote = async e => {
+    e.preventDefault()
+
+    let note = {
+      noteContent: userInput,
+      isDeleted: false
+    }
+
+    try {
+      const {ethereum} = window;
+      if (ethereum){
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const NoteContract = new ethers.Contract(NoteContractAddress, NoteAbi.abi, signer);
+
+        // Call the addNote function from NoteContract.sol
+        NoteContract.addNote(note.noteContent, note.isDeleted)
+        .then(res => {
+          setNotes([...notes, note]);
+          console.log("Successfully Added Note");
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+      else{
+        console.log('ethereum does not exist!');
+      }
+
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
-  // Add tasks from front-end onto the blockchain
-  const addNote = async e => {
+  // Just gets all the tasks from the contract
+  const getAllNotes = async () => {
 
   }
 
@@ -69,8 +103,8 @@ export default function Home() {
 
   return (
     <div className='bg-[#062F4F] h-screen w-screen flex justify-center py-6'>
-      {'is user not logged in?' ? <ConnectWalletButton connect={connectWallet} /> :
-        'is this the correct network?' ? <NoteList /> : <WrongNetworkMessage />}
+      {!userLoggedIn ? <ConnectWalletButton connect={connectWallet} /> : 
+        rightNetwork ? <NoteList userInput={userInput} setUserInput={setUserInput} addNote={addNote}/> : <WrongNetworkMessage />}
     </div>
   )
 }
