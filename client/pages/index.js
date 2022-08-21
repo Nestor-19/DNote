@@ -1,5 +1,5 @@
 import { ethers } from 'ethers'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
 import WrongNetworkMessage from '../components/WrongNetworkMessage'
 import ConnectWalletButton from '../components/ConnectWalletButton'
 import NoteList from '../components/NoteList'
@@ -13,6 +13,10 @@ export default function Home() {
   const [currAccount, setCurrAccount] = useState('');
   const [userInput, setUserInput] = useState('');
   const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    connectWallet();
+  }, [])
 
   // Triggers Metamask popup for user to connect their wallet
   const connectWallet = async () => {
