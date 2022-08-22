@@ -1,4 +1,4 @@
-import { BsFillTrashFill } from 'react-icons/bs'
+import {MdDelete} from 'react-icons/md'
 
 const Task = (props) => {
   return (
@@ -8,8 +8,8 @@ const Task = (props) => {
           <p>{props.noteContent}</p>
         </div>
       </div>
-      <BsFillTrashFill
-        className='text-2xl cursor-pointer ml-10'
+      <MdDelete
+        className='text-3xl cursor-pointer ml-6 sm:ml-8 sm:mr-2 mr-1'
         onClick={props.onClick}
       />
     </div>

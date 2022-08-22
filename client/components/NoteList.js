@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
 import Note from './Note';
-import { IoMdAddCircle } from 'react-icons/io'
+import {MdAddCircle} from 'react-icons/md'
 
 const NoteList = (props) => <div className='w-[70%] bg-[#000000] py-4 px-9 rounded-[20px] overflow-y-scroll'>
   <Navbar />
@@ -12,7 +12,7 @@ const NoteList = (props) => <div className='w-[70%] bg-[#000000] py-4 px-9 round
       value={props.userInput}
       onChange={e => props.setUserInput(e.target.value)}
     />
-    <IoMdAddCircle
+    <MdAddCircle
       className='text-white text-[50px] cursor-pointer ml-[20px] mb-[10px]'
       onClick={props.addNote}
     />
