@@ -1,7 +1,8 @@
-import Navbar from './Navbar'
+import Navbar from './Navbar';
+import Note from './Note';
 import { IoMdAddCircle } from 'react-icons/io'
 
-const NoteList = (props) => <div className='w-[70%] bg-[#000000] py-4 px-9 rounded-[30px] overflow-y-scroll'>
+const NoteList = (props) => <div className='w-[70%] bg-[#000000] py-4 px-9 rounded-[20px] overflow-y-scroll'>
   <Navbar />
   <div className='py-3 text-white'>TODAY&apos;S NOTES</div>
   <form className='flex items-center justify-center'>
@@ -16,6 +17,11 @@ const NoteList = (props) => <div className='w-[70%] bg-[#000000] py-4 px-9 round
       onClick={props.addNote}
     />
   </form>
+  <div>
+    {props.notes.map(currNote => (
+      <Note key={currNote.id} noteContent={currNote.noteContent} />
+    ))}
+  </div>
 </div>
 
 export default NoteList
