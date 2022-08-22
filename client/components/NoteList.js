@@ -3,7 +3,7 @@ import Note from './Note';
 import {MdAddCircle} from 'react-icons/md'
 
 const NoteList = (props) => <div className='w-[70%] bg-[#000000] py-4 px-9 rounded-[20px] overflow-y-scroll'>
-  <Navbar />
+  <Navbar currAccount={props.currAccount}/>
   <div className='py-3 text-white'>TODAY&apos;S NOTES</div>
   <form className='flex items-center justify-center'>
     <input

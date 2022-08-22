@@ -148,7 +148,7 @@ export default function Home() {
   return (
     <div className='bg-[#062F4F] h-screen w-screen flex justify-center py-6'>
       {!userLoggedIn ? <ConnectWalletButton connect={connectWallet} /> : 
-        rightNetwork ? <NoteList userInput={userInput} notes={notes} setUserInput={setUserInput} addNote={addNote} deleteNote={deleteNote}/> : <WrongNetworkMessage />}
+        rightNetwork ? <NoteList currAccount={currAccount} userInput={userInput} notes={notes} setUserInput={setUserInput} addNote={addNote} deleteNote={deleteNote}/>: <WrongNetworkMessage />}
     </div>
   )
 }
