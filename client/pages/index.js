@@ -98,7 +98,7 @@ export default function Home() {
     setUserInput('');
   }
 
-  // Just gets all the tasks from the contract
+  // Gets all the tasks from the contract
   const getAllNotes = async () => {
     try{
       const {ethereum} = window;
@@ -121,13 +121,34 @@ export default function Home() {
 
   // Removes tasks from front-end by filtering it out on the blockchain smart contract
   const deleteNote = key => async () => {
+    try{
+      const {ethereum} = window;
+      if (ethereum){
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const NoteContract = new ethers.Contract(NoteContractAddress, NoteAbi.abi, signer);
+
+        await NoteContract.deleteNote(key, true);
+        console.log("Successfully deleted note");
+
+        let allNotes = await NoteContract.getMyNotes();
+        setNotes(allNotes);
+
+      }
+      else{
+        console.log('ethereum does not exist!');
+      }
+    }
+    catch (error){
+      console.log(error);
+    }
 
   }
 
   return (
     <div className='bg-[#062F4F] h-screen w-screen flex justify-center py-6'>
       {!userLoggedIn ? <ConnectWalletButton connect={connectWallet} /> : 
-        rightNetwork ? <NoteList userInput={userInput} notes={notes} setUserInput={setUserInput} addNote={addNote}/> : <WrongNetworkMessage />}
+        rightNetwork ? <NoteList userInput={userInput} notes={notes} setUserInput={setUserInput} addNote={addNote} deleteNote={deleteNote}/> : <WrongNetworkMessage />}
     </div>
   )
 }

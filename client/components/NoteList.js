@@ -19,7 +19,7 @@ const NoteList = (props) => <div className='w-[70%] bg-[#000000] py-4 px-9 round
   </form>
   <div>
     {props.notes.map(currNote => (
-      <Note key={currNote.id} noteContent={currNote.noteContent} />
+      <Note key={currNote.id} noteContent={currNote.noteContent} onClick={props.deleteNote(currNote.id)}/>
     ))}
   </div>
 </div>

@@ -10,6 +10,7 @@ const Task = (props) => {
       </div>
       <BsFillTrashFill
         className='text-2xl cursor-pointer ml-10'
+        onClick={props.onClick}
       />
     </div>
   )
